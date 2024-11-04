@@ -1,2 +1,4 @@
 requests
 plotly
+pandas
+ptuhon-dotenv
