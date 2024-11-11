@@ -61,3 +61,11 @@ Run rock paper scissors:
 ```sh
 python app/rps.py
 ```
+
+## Testing
+
+Run tests:
+
+```sh
+pytest
+```
