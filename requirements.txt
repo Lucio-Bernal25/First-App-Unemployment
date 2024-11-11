@@ -3,3 +3,4 @@ plotly
 pandas
 python-dotenv
 sendgrid
+pytest

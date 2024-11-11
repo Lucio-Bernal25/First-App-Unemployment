@@ -56,3 +56,8 @@ Run email sending function:
 ```sh
 python app/email_service.py
 ```
+
+Run rock paper scissors:
+```sh
+python app/rps.py
+```
