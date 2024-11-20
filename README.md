@@ -63,7 +63,7 @@ python app/rps.py
 ```
 
 Webapp:
-FLASK_APP = web_app flask run
+flask run
 
 ## Testing
 
