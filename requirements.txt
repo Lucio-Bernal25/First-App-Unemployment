@@ -4,3 +4,5 @@ pandas
 python-dotenv
 sendgrid
 pytest
+flask
+gunicorn

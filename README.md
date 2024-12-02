@@ -62,6 +62,9 @@ Run rock paper scissors:
 python app/rps.py
 ```
 
+Webapp:
+flask run
+
 ## Testing
 
 Run tests:
@@ -69,3 +72,4 @@ Run tests:
 ```sh
 pytest
 ```
+
