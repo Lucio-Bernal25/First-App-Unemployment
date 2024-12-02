@@ -1,36 +1,45 @@
-# this is the app/stocks.py file...
 
-# LOCAL DEV (ENV VARS)
+# this is the "app/stocks.py" file...
 
-import os
+# IMPORTS
 
-from dotenv import load_dotenv
 from pandas import read_csv
 from plotly.express import line
 
 from App.alpha_service import API_KEY
 
-def fetch_stocks_csv(symbol):
-    request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={API_KEY}&outputsize=full&datatype=csv"
-    df = read_csv(request_url)
-    return df
+# FUNCTIONS
 
+def format_usd(my_price):
+    return f"${float(my_price):,.2f}"
+
+
+def fetch_stocks_csv(symbol="MSFT"):
+    request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={API_KEY}&outputsize=full&datatype=csv"
+    return read_csv(request_url)
+
+
+# the weird main conditional says
+# only run the indented code if you are running this file
+# from the command line
+# otherwise if importing from this file, ignore the stuff below
 
 if __name__ == "__main__":
 
-    # SELECT A SYMBOL
+    # only if running from command line will this get reached
 
-    symbol = input("Please input a symbol (e.g. 'NFLX'): ") or "NFLX"
+    # STOCK SELECTION
+
+    symbol = input("Please input a symbol (e.g. 'NFLX'): ")
     print("SYMBOL:", symbol)
 
-    # FETCH THE DATA
+    # REPORT
 
     df = fetch_stocks_csv(symbol)
 
     print(df.columns)
     print(len(df))
-    print(df.head())
-
+    df.head()
 
     # Challenge A
     #
@@ -61,7 +70,6 @@ if __name__ == "__main__":
     # quantiles, for fun :-)
     print(f"75TH PERCENTILE: ${recent_df['adjusted_close'].quantile(.75).round(2)}")
     print(f"25TH PERCENTILE: ${recent_df['adjusted_close'].quantile(.25).round(2)}")
-
 
     # Challenge C
     #
