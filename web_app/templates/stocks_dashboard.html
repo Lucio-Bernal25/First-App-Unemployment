@@ -1,4 +1,5 @@
-{% extends "layout.html" %}
+{% extends "bootstrap_5_layout.html" %}
+{% set active_page = "stocks_dashboard" %}
 
 {% block content %}
 
@@ -13,13 +14,16 @@
 
         console.log("STOCKS DASHBOARD...")
 
-        // use data passed from the router:
+        // use data from the router!
         var symbol = '{{ symbol }}'
-        console.log(symbol)
-        var stockData = JSON.parse('{{data | tojson}}') // see: https://stackoverflow.com/a/45132694/670433
+        //var stockData = JSON.parse('{{ data }}')
+        //var stockData = '{{ data }}'
+        var stockData = JSON.parse('{{data | tojson}}') // https://stackoverflow.com/a/45132694/670433
         console.log(stockData)
 
-        // map the data:
+        //var tsd = stockData["Time Series (Daily)"]
+        //var dates = Object.keys(tsd)
+        //var dailyPrices = Object.values(tsd)
         var dates = stockData.map(obj => obj["timestamp"])
         var closingPrices = stockData.map(obj => obj["adjusted_close"])
 
@@ -33,12 +37,10 @@
         var data = [series]
         var layout = {
             title: "Daily Closing Prices for Stock: " + symbol,
-            height: 450,
+            height: 600,
             yaxis: {
-                title: {text: "Adjusted Closing Price"},
-                tickformat: '$' // see: https://plotly.com/javascript/tick-formatting/
-            },
-            xaxis: {title: {text: "Date"}}
+                tickformat: '$' // https://plotly.com/javascript/tick-formatting/
+            }
         }
         Plotly.newPlot("chart-container", data, layout, {responsive: true})
 
