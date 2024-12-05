@@ -35,6 +35,7 @@ def stocks_dashboard():
         latest_date = df.iloc[0]["timestamp"]
         data = df.to_dict("records")
 
+
         flash("Fetched Real-time Market Data!", "success")
         return render_template("stocks_dashboard.html",
             symbol=symbol,
@@ -44,6 +45,7 @@ def stocks_dashboard():
         )
     except Exception as err:
         print('OOPS', err)
+
 
         flash("Market Data Error. Please check your symbol and try again!", "danger")
         return redirect("/stocks/form")
